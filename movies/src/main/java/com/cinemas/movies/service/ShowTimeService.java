@@ -31,14 +31,14 @@ public interface ShowTimeService {
 	/**
 	 * show a list of movie + show times playing in a particular theater 
 	 * @param theaterId - the theater id to filter by
-	 * @return
+	 * @return list of showtimes
 	 */
 	List<ShowTime> getMoviesPlayingInTheater(long theaterId);
 	
 	/**
 	 * show a list of theaters + show times playing  a particular movie
 	 * @param movieId - the movieId id to filter by
-	 * @return
+	 * @return list of showtimes
 	 */
 	List<ShowTime> getTheatersPlayingMovie(long movieId);	
 }
