@@ -11,4 +11,6 @@ public interface ShowTime {
 	long getTheaterScreenCapacity();
 	long getTicketsRemaining();
 	int getTicketPrice();
+	String getMovieName();
+	String getTheaterName();
 }

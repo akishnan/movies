@@ -35,6 +35,7 @@ public class TestTicketPurchasingService extends AbstractJUnit4SpringContextTest
 			ex.printStackTrace();
 		}	
 		
+		//the below should return true since the no of seats requested is 4 which less than the tickets remaining for the below show
 		Assert.assertEquals(true, ticketPurchasingService.purchaseTickets(userId, movieId, theaterId, screenId, showTime, 4));
 		
 		//the below should return false - since the no of seats requested is 11 which is greater than ticket remaining for this given show

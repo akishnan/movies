@@ -16,16 +16,20 @@ public class ShowTimeImpl implements ShowTime {
 	private long theaterScreenCapacity;
 	private int ticketsRemaining;
 	private int ticketPrice;
+	private String movieName;
+	private String theaterName;
 	
 	public ShowTimeImpl(long movieId, long theaterId) {
 		// TODO SUBSTITUTE by database call , hardcoding for now
 		this.movieId = 1;
 		this.theaterId = 1;
 		this.screenId = 1;
+		this.movieName = "mission impossible";
+		this.theaterName = "AMC Mercado 20";
 		
 		try {
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-			showTime = sdf.parse("2018-12-31 18:00:00");
+			this.showTime = sdf.parse("2018-12-31 18:00:00");
 		}
 		catch(ParseException ex){
 			ex.printStackTrace();
@@ -83,6 +87,18 @@ public class ShowTimeImpl implements ShowTime {
 	public int getTicketPrice() {
 		// TODO Auto-generated method stub
 		return ticketPrice;
+	}
+
+	@Override
+	public String getMovieName() {
+		// TODO Auto-generated method stub
+		return movieName;
+	}
+
+	@Override
+	public String getTheaterName() {
+		// TODO Auto-generated method stub
+		return theaterName;
 	}
 
 }
