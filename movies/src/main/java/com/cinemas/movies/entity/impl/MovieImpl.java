@@ -4,6 +4,16 @@ import java.util.Date;
 
 import com.cinemas.movies.entity.Movie;
 
+/**
+ * represent an instance of movie object and its attributes
+ * <b>id</b> being the unique attribute/key
+ * 
+ * @author Amit
+ * @version 1.0
+ * @since 2015-08-18
+ *
+ */
+
 public class MovieImpl implements Movie 
 {
 	private long id;

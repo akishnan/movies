@@ -6,8 +6,17 @@ import org.springframework.stereotype.Service;
 import com.cinemas.movies.entity.User;
 import com.cinemas.movies.entity.impl.UserImpl;
 import com.cinemas.movies.service.CreditCardValidationService;
-import com.cinemas.movies.service.ShowTimeService;
 import com.cinemas.movies.service.UserService;
+
+/**
+ * UserServiceImpl validates if the username/password is valid combination
+ * it also calls into CreditCardValidationService to validate the users credit card info
+ * 
+ * @author Amit
+ * @version 1.0
+ * @since 2015-08-18
+ * @see CreditCardValidationService
+ */
 
 @Service
 public class UserServiceImpl implements UserService {

@@ -6,6 +6,16 @@ import java.text.SimpleDateFormat;
 
 import com.cinemas.movies.entity.User;
 
+/**
+ * represent an instance of user object and its attributes
+ * <b>id</b> being the unique attribute/key
+ * 
+ * @author Amit
+ * @version 1.0
+ * @since 2015-08-18
+ *
+ */
+
 public class UserImpl implements User {
 	
 	private long id;

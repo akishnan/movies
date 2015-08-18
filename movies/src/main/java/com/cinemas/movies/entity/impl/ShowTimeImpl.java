@@ -6,6 +6,20 @@ import java.util.Date;
 
 import com.cinemas.movies.entity.ShowTime;
 
+/**
+ * represent an instance of showtime object and its attributes
+ * the below 4 attributes uniquely identify/qualify a showtime
+ * 
+ * <b>movieId</b>
+ * <b>theaterId</b>
+ * <b>screenId</b>
+ * <b>showTime</b>
+ * 
+ * @author Amit
+ * @version 1.0
+ * @since 2015-08-18
+ *
+ */
 public class ShowTimeImpl implements ShowTime {
 	
 	private long movieId;
@@ -78,9 +92,13 @@ public class ShowTimeImpl implements ShowTime {
 	}
 
 	@Override
-	public long getTicketsRemaining() {
+	public int getTicketsRemaining() {
 		// TODO Auto-generated method stub
 		return ticketsRemaining;
+	}
+	
+	public void setTicketsRemaining(int ticketRemaining) {
+		this.ticketsRemaining = ticketRemaining;
 	}
 
 	@Override

@@ -14,7 +14,6 @@ public interface MovieBrowsingService {
 	 */
 	Movie getMovieByName(String movieName);
 
-	//get a list of all movies sorted by release date
 	
 	/**
 	 * get a list of all movies

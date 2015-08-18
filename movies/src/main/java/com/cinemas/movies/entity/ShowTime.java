@@ -9,7 +9,7 @@ public interface ShowTime {
 	Date getShowTime();
 	boolean is3D();
 	long getTheaterScreenCapacity();
-	long getTicketsRemaining();
+	int getTicketsRemaining();
 	int getTicketPrice();
 	String getMovieName();
 	String getTheaterName();

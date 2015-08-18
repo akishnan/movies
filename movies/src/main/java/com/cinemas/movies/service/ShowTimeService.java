@@ -28,6 +28,19 @@ public interface ShowTimeService {
 	 */
 	boolean hasTicketRemaining(long movieId, long theaterId, long screenId, Date showTime, int noOfTickets);
 	
+
+	/**
+	 * get the price of each ticket
+	 * for a show time (uniquely identified by below 4 attributes)
+	 * 
+	 * @param movieId uniquely identifies a movie
+	 * @param theaterId uniquely identifies a theater 
+	 * @param screenId uniquely identifies a screen when theater has multiple screens
+	 * @param showTime the time of show
+	 * @return the ticket price for the given show.
+	 */
+	int getTicketPrice(long movieId, long theaterId, long screenId, Date showTime);
+
 	/**
 	 * show a list of movie + show times playing in a particular theater 
 	 * @param theaterId - the theater id to filter by

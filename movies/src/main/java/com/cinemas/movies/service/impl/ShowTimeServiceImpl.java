@@ -8,6 +8,12 @@ import com.cinemas.movies.entity.ShowTime;
 import com.cinemas.movies.entity.impl.ShowTimeImpl;
 import com.cinemas.movies.service.ShowTimeService;
 
+/**
+ * 
+ * @author Amit
+ *
+ */
+
 @Service
 public class ShowTimeServiceImpl implements ShowTimeService {
 
@@ -48,5 +54,14 @@ public class ShowTimeServiceImpl implements ShowTimeService {
 			return true;
 		}
 		return false;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public int getTicketPrice(long movieId, long theaterId, long screenId, Date showTime) {
+		ShowTime aShowTime = new ShowTimeImpl(movieId, theaterId);
+		return aShowTime.getTicketPrice();
 	}
 }

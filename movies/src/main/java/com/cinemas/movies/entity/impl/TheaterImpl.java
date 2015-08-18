@@ -2,6 +2,16 @@ package com.cinemas.movies.entity.impl;
 
 import com.cinemas.movies.entity.Theater;
 
+/**
+ * represent an instance of theater object and its attributes
+ * <b>id</b> being the unique attribute/key
+ * 
+ * @author Amit
+ * @version 1.0
+ * @since 2015-08-18
+ *
+ */
+
 public class TheaterImpl implements Theater {
 	
 	private long theaterId;
