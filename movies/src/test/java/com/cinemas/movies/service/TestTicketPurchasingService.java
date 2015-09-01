@@ -10,11 +10,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 
+import com.cinemas.movies.entity.Movie;
+import com.cinemas.movies.entity.Theater;
+
 @ContextConfiguration(locations = {"classpath:spring-context.xml"})
 public class TestTicketPurchasingService extends AbstractJUnit4SpringContextTests  {
+	
+	
 	@Autowired
 	private TicketPurchasingService ticketPurchasingService;
 	
+	@Autowired
+	private MovieBrowsingService movieBrowsingService;
+
+	@Autowired
+	private TheaterListingService theaterListingService;
 	
 	@Test
 	public void testPurchaseTickets(){
@@ -22,9 +32,18 @@ public class TestTicketPurchasingService extends AbstractJUnit4SpringContextTest
 		long userId = 1;
 		
 		//the below 4 attributes uniquely identify a given movie occurring at a particular theater/screen at particular time.
-		long movieId = 1;
-		long theaterId = 1;
+		
+		//look up movie  from movie browsing service to get to it's id
+		Movie aMovie = movieBrowsingService.getMovieByName("Mission Impossible");
+		long movieId = aMovie.getId();
+		
+		//look up theater  from theater listing service to get to it's id
+		Theater aTheater = theaterListingService.getTheaterByName("AMC Mercado 20");
+		long theaterId = aTheater.getId();
+		
+		//default screen id
 		long screenId = 1;
+		
 		Date showTime = null;
 		//show time
 		try {

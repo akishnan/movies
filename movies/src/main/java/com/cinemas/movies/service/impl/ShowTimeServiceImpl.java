@@ -79,6 +79,7 @@ public class ShowTimeServiceImpl implements ShowTimeService {
 	 * {@inheritDoc}
 	 */
 	@Override
+	@Transactional
 	public int getTicketPrice(long movieId, long theaterId, long screenId, Date showTime) {
 		ShowTime aShowTime = showTimeRepository.getShowTime(movieId, theaterId, screenId, showTime);
 		return aShowTime.getTicketPrice();

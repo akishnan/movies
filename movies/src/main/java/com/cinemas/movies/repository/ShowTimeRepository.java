@@ -17,7 +17,10 @@ public interface ShowTimeRepository {
 	
 	/**
 	 * look up a showtime by movie ID , theater ID, screenID , showTime
-	 * @param showTimeId
+	 * @param movieID - the unique id for the movie entity
+	 * @param theaterID - the unique id for the theater entity
+	 * @param screenID  - the unqiue screenId
+	 * @param showTime - the show time for the movie
 	 * @return showTime  object if found
 	 */
 	ShowTime getShowTime(long movieId, long theaterId, long screenId, Date showTime);
