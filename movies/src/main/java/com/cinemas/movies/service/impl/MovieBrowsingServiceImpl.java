@@ -3,22 +3,55 @@ package com.cinemas.movies.service.impl;
 import java.util.Date;
 import java.util.List;
 
+import javax.transaction.Transactional;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cinemas.movies.entity.Movie;
 import com.cinemas.movies.entity.impl.MovieImpl;
+import com.cinemas.movies.repository.MovieRepository;
 import com.cinemas.movies.service.MovieBrowsingService;
+
 
 @Service
 public class MovieBrowsingServiceImpl implements MovieBrowsingService {
+	
+	private Logger logger = LoggerFactory.getLogger(getClass());
+	
+	@Autowired
+	private MovieRepository movieRepository;
+	
+	
+	/**
+	 *  {@inheritDoc}
+	 */
+	@Override
+	@Transactional
+	public Movie addMovie(Movie aMovie) {
+		long movieId =  movieRepository.addMovie(aMovie);
+		return getMovieById(movieId);
+	}
+
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	@Transactional//at method level
+	public Movie getMovieById(long movieId) {
+		return movieRepository.getMovieById(movieId);
+	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
+	@Transactional
 	public Movie getMovieByName(String movieName) {
-		MovieImpl aMovieImpl = new MovieImpl(movieName);
-		return aMovieImpl;
+		return movieRepository.getMovieByName(movieName);
 	}
 
 	/**
@@ -27,7 +60,7 @@ public class MovieBrowsingServiceImpl implements MovieBrowsingService {
 	@Override
 	public List<Movie> getMovies() {
 		//TODO load movies from the database
-		return null;
+		return movieRepository.getMovies();
 	}
 
 	/**
@@ -56,4 +89,7 @@ public class MovieBrowsingServiceImpl implements MovieBrowsingService {
 		//TODO load movies from the database sorted by ranking
 		return null;
 	}
+
+
+
 }

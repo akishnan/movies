@@ -2,6 +2,13 @@ package com.cinemas.movies.entity.impl;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 import com.cinemas.movies.entity.Movie;
 
 /**
@@ -14,43 +21,49 @@ import com.cinemas.movies.entity.Movie;
  *
  */
 
+@Entity
+@Table(name="movies")
 public class MovieImpl implements Movie 
 {
+	@Id
+	@Column(name="idmovies")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
+	
+	@Column(name="movieName")
 	private String movieName;
+	
+	@Column(name="movieGenre")
 	private String movieGenre;
+	
+	@Column(name="releaseDate")
 	private Date releaseDate;
+	
+	@Column(name="ranking")
 	private int ranking;
+	
+	@Column(name="movieDirector")
 	private String movieDirector;
+	
+	@Column(name="movieCast")
 	private String movieCast;
+	
+	@Column(name="movieTrailerLink")
 	private String movieTrailerLink;
 	
-	public MovieImpl(long id) {
-		this.id = id;
-	}
-	
-	public void setId(long id) {
-		this.id = id;
-	}
 
-	public MovieImpl(String movieName) {
-		// TODO SUBSTITUTE by database call , hardcoding for now
-
-		
-		this.movieName = movieName;
-		this.id = 1;
-		this.movieGenre = "action";
-		this.movieDirector = "Christopher McQuarrie";
-		this.movieCast = "Tom Cruise, Jeremy Renner, Simon Pegg";
-		this.ranking = 1;		
-	}
-
+	public MovieImpl() {}
 	
 	@Override
 	public long getId() {
 		return id;
 	}
 
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	
 	@Override
 	public String getMovieName() {
 		return movieName;

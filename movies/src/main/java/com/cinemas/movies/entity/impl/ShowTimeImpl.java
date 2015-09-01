@@ -1,10 +1,22 @@
 package com.cinemas.movies.entity.impl;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+import com.cinemas.movies.entity.Movie;
+import com.cinemas.movies.entity.impl.MovieImpl;
+import com.cinemas.movies.entity.impl.TheaterImpl;
 import com.cinemas.movies.entity.ShowTime;
+import com.cinemas.movies.entity.Theater;
 
 /**
  * represent an instance of showtime object and its attributes
@@ -20,51 +32,63 @@ import com.cinemas.movies.entity.ShowTime;
  * @since 2015-08-18
  *
  */
+
+@Entity
+@Table(name="showtimes")
 public class ShowTimeImpl implements ShowTime {
 	
-	private long movieId;
-	private long theaterId;
-	private long screenId;
-	private Date showTime;
-	private boolean is3D;
-	private long theaterScreenCapacity;
-	private int ticketsRemaining;
-	private int ticketPrice;
-	private String movieName;
-	private String theaterName;
+	@Id
+	@Column(name="idShowTimes")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private long id;
 	
-	public ShowTimeImpl(long movieId, long theaterId) {
-		// TODO SUBSTITUTE by database call , hardcoding for now
-		this.movieId = 1;
-		this.theaterId = 1;
-		this.screenId = 1;
-		this.movieName = "mission impossible";
-		this.theaterName = "AMC Mercado 20";
+	@ManyToOne(fetch = FetchType.EAGER, targetEntity=MovieImpl.class)
+	@JoinColumn(name="Movies_idmovies")
+	private Movie movie;
+	
+	@ManyToOne(fetch = FetchType.EAGER, targetEntity=TheaterImpl.class)
+	@JoinColumn(name="Theaters_idtheater")
+	private Theater theater;	
 		
-		try {
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-			this.showTime = sdf.parse("2018-12-31 18:00:00");
-		}
-		catch(ParseException ex){
-			ex.printStackTrace();
-		}
-		
-		this.is3D = false;
-		this.theaterScreenCapacity = 100;
-		this.ticketsRemaining = 10;
-		this.ticketPrice = 18;
+	@Column(name="screenId")
+	private long screenId;
+	
+	@Column(name="showTime")
+	private Date showTime;
+	
+	@Column(name="is3D")
+	private int is3D;
+	
+	@Column(name="theaterScreenCapacity")
+	private long theaterScreenCapacity;
+	
+	@Column(name="ticketsRemaining")
+	private int ticketsRemaining;
+	
+	@Column(name="ticketPrice")
+	private int ticketPrice;
+
+	@Override
+	public long getId() {
+		return id;
+	}
+	
+	@Override
+	public Movie getMovie() {
+		return movie;
+	}
+
+	public void setMovie(Movie movie) {
+		this.movie = movie;
 	}
 
 	@Override
-	public long getMovieId() {
-		// TODO Auto-generated method stub
-		return movieId;
+	public Theater getTheater() {
+		return theater;
 	}
 
-	@Override
-	public long getTheaterId() {
-		// TODO Auto-generated method stub
-		return theaterId;
+	public void setTheater(Theater theater) {
+		this.theater = theater;
 	}
 
 	@Override
@@ -72,28 +96,43 @@ public class ShowTimeImpl implements ShowTime {
 		// TODO Auto-generated method stub
 		return screenId;
 	}
+	
+	public void setScreenId(long screenId) {
+		this.screenId = screenId;
+	}
 
 	@Override
 	public Date getShowTime() {
 		// TODO Auto-generated method stub
 		return showTime;
 	}
+	
+	public void setShowTime(Date showTime) {
+		this.showTime = showTime;
+	}
 
 	@Override
-	public boolean is3D() {
+	public int is3D() {
 		// TODO Auto-generated method stub
 		return is3D;
+	}
+	
+	public void set3D(int is3D) {
+		this.is3D = is3D;
 	}
 
 	@Override
 	public long getTheaterScreenCapacity() {
-		// TODO Auto-generated method stub
 		return theaterScreenCapacity;
 	}
 
+	public void setTheaterScreenCapacity(int theaterScreenCapacity) {
+		this.theaterScreenCapacity = theaterScreenCapacity;
+	}
+
+	
 	@Override
 	public int getTicketsRemaining() {
-		// TODO Auto-generated method stub
 		return ticketsRemaining;
 	}
 	
@@ -106,17 +145,8 @@ public class ShowTimeImpl implements ShowTime {
 		// TODO Auto-generated method stub
 		return ticketPrice;
 	}
-
-	@Override
-	public String getMovieName() {
-		// TODO Auto-generated method stub
-		return movieName;
+	
+	public void setTicketPrice(int ticketPrice) {
+		this.ticketPrice = ticketPrice;
 	}
-
-	@Override
-	public String getTheaterName() {
-		// TODO Auto-generated method stub
-		return theaterName;
-	}
-
 }

@@ -8,6 +8,13 @@ import com.cinemas.movies.entity.ShowTime;
 public interface ShowTimeService {
 	
 	/**
+	 * look up a showtime instance by id.
+	 * @param showTimeId
+	 * @return a show time object
+	 */
+	ShowTime getShowTimeById(long showTimeId);	
+
+	/**
 	 * look up showtime for a particular movie in a particular theater.
 	 * @param movieId uniquely identifies a movie
 	 * @param theaterId unique identifies a theater 

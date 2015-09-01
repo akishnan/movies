@@ -7,6 +7,23 @@ import com.cinemas.movies.entity.Movie;
 
 public interface MovieBrowsingService {
 	
+	
+	/**
+	 * add a new movie object
+	 * @param aMovie
+	 * @return a movie object
+	 */
+	Movie addMovie(Movie aMovie);
+
+	
+	/**
+	 * return a movie object by matching it's id
+	 * @param movieId
+	 * @return a movie object
+	 */
+	Movie getMovieById(long movieId);
+	
+	
 	/**
 	 * filter movie by name
 	 * @param movieName name of movie to filter by

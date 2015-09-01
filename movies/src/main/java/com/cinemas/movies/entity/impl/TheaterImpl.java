@@ -1,5 +1,12 @@
 package com.cinemas.movies.entity.impl;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 import com.cinemas.movies.entity.Theater;
 
 /**
@@ -12,46 +19,68 @@ import com.cinemas.movies.entity.Theater;
  *
  */
 
+@Entity
+@Table(name="theaters")
 public class TheaterImpl implements Theater {
 	
-	private long theaterId;
+	@Id
+	@Column(name="idtheater")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private long id;
+	
+	@Column(name="theaterName")
 	private String theaterName;
+	
+	@Column(name="theaterAddrLine1")
 	private String theaterAddrLine1;
+	
+	@Column(name="theaterAddrLine2")
 	private String theaterAddrLine2;
+	
+	@Column(name="theaterCity")
 	private String theaterCity;
+	
+	@Column(name="theaterState")	
 	private String theaterState;
-	private int zipCode;
-	private int numberOfScreens;
+	
+	@Column(name="theaterZipCode")
+	private int theaterZipCode;
+	
+	@Column(name="theaterNumOfScreens")
+	private int theaterNumOfScreens;
 
 	
-	public TheaterImpl (String theaterName) {
-		// TODO SUBSTITUTE by database call , hardcoding for now
-		this.theaterId = 1;
-		this.theaterName = "AMC Mercado 20";
-		this.theaterAddrLine1 = "3111 Mission College Blvd";
-		this.theaterAddrLine2 = "";
-		this.theaterCity = "Santa Clara";
-		this.theaterState = "CA";
-		this.zipCode = 95054;
-		this.numberOfScreens = 20;		
+	public TheaterImpl () {
 	}
 
 	@Override
 	public long getId() {
 		// TODO Auto-generated method stub
-		return theaterId;
+		return id;
+	}
+	
+	public void setId(long id) {
+		this.id = id;
 	}
 
 	@Override
 	public String getTheaterName() {
-		// TODO Auto-generated method stub
 		return theaterName;
 	}
+	
+	public void setTheaterName(String theaterName) {
+		this.theaterName = theaterName;
+	}
+	
 
 	@Override
 	public String getTheaterAddrLine1() {
 		// TODO Auto-generated method stub
 		return theaterAddrLine1;
+	}
+	
+	public void setTheaterAddrLine1(String theaterAddrLine1) {
+		this.theaterAddrLine1 = theaterAddrLine1;
 	}
 
 	@Override
@@ -59,11 +88,19 @@ public class TheaterImpl implements Theater {
 		// TODO Auto-generated method stub
 		return theaterAddrLine2;
 	}
+	
+	public void setTheaterAddrLine2(String theaterAddrLine2) {
+		this.theaterAddrLine2 = theaterAddrLine2;
+	}
 
 	@Override
 	public String getTheaterCity() {
 		// TODO Auto-generated method stub
 		return theaterCity;
+	}
+	
+	public void setTheaterCity(String theaterCity) {
+		this.theaterCity = theaterCity;
 	}
 
 	@Override
@@ -71,17 +108,29 @@ public class TheaterImpl implements Theater {
 		// TODO Auto-generated method stub
 		return theaterState;
 	}
+	
+	public void setTheaterState(String theaterState) {
+		this.theaterState = theaterState;
+	}
 
 	@Override
 	public int getTheaterZipCode() {
 		// TODO Auto-generated method stub
-		return zipCode;
+		return theaterZipCode;
+	}
+	
+	public void setTheaterZipCode(int theaterZipCode) {
+		this.theaterZipCode = theaterZipCode;
 	}
 
 	@Override
 	public int getNumberOfScreens() {
 		// TODO Auto-generated method stub
-		return numberOfScreens;
+		return theaterNumOfScreens;
+	}
+	
+	public void setNumberOfScreens(int theaterNumOfScreens) {
+		this.theaterNumOfScreens = theaterNumOfScreens;
 	}
 
 }

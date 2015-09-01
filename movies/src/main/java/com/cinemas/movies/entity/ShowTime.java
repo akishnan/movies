@@ -3,14 +3,14 @@ package com.cinemas.movies.entity;
 import java.util.Date;
 
 public interface ShowTime {
-	long getMovieId();
-	long getTheaterId();
+	long getId();
+	Movie getMovie();
+	Theater getTheater();
 	long getScreenId();
 	Date getShowTime();
-	boolean is3D();
+	int is3D();
 	long getTheaterScreenCapacity();
 	int getTicketsRemaining();
 	int getTicketPrice();
-	String getMovieName();
-	String getTheaterName();
+
 }

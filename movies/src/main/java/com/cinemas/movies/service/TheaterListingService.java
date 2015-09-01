@@ -5,6 +5,23 @@ import java.util.List;
 import com.cinemas.movies.entity.Theater;
 
 public interface TheaterListingService {
+	
+	
+	/**
+	 * add a new movie object
+	 * @param aMovie
+	 * @return a movie object
+	 */
+	Theater addTheater(Theater aTheater);
+	
+	
+	/**
+	 * return a Theater object by matching it's id
+	 * @param theaterId
+	 * @return a theater object
+	 */
+	Theater getTheaterId(long theaterId);
+	
 
 	//get theater by name
 	/**
