@@ -31,4 +31,17 @@ public interface MovieRepository {
 	 * @return
 	 */
 	List<Movie> getMovies();
+	
+	/**
+	 * get a list of movies sorted by release dates
+	 * @return a list of movies sorted by release dates
+	 */
+	List<Movie> sortMoviesByReleaseDate();
+	
+	//
+	/**
+	 * get a list of movies sorted by ranking
+	 * @return a list of movies sorted by ranking
+	 */
+	List<Movie> sortMoviesByRanking();
 }

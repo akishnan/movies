@@ -61,4 +61,10 @@ public interface ShowTimeService {
 	 * @return list of showtimes
 	 */
 	List<ShowTime> getTheatersPlayingMovie(long movieId);	
+
+	/**
+	 * @return list of showtimes
+	 */
+	List<ShowTime> getAllShowTimes();	
+
 }

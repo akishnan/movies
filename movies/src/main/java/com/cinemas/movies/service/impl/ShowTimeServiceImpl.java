@@ -85,5 +85,11 @@ public class ShowTimeServiceImpl implements ShowTimeService {
 		return aShowTime.getTicketPrice();
 	}
 
+	@Override
+	@Transactional
+	public List<ShowTime> getAllShowTimes() {
+		return  showTimeRepository.getAllShowTimes();
+	}
+
 
 }

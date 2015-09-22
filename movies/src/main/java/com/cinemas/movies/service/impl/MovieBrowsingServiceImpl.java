@@ -9,15 +9,20 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import com.cinemas.movies.entity.Movie;
 import com.cinemas.movies.entity.impl.MovieImpl;
 import com.cinemas.movies.repository.MovieRepository;
 import com.cinemas.movies.service.MovieBrowsingService;
+import com.cinemas.movies.service.exception.InvalidFieldException;
+import com.cinemas.movies.service.exception.MissingDataException;
 
 
 @Service
 public class MovieBrowsingServiceImpl implements MovieBrowsingService {
+	
+	private static final int MAX_MOVIE_NAME_LENGTH = 45;
 	
 	private Logger logger = LoggerFactory.getLogger(getClass());
 	
@@ -31,6 +36,14 @@ public class MovieBrowsingServiceImpl implements MovieBrowsingService {
 	@Override
 	@Transactional
 	public Movie addMovie(Movie aMovie) {
+		if(StringUtils.isEmpty(aMovie.getMovieName())){			
+			throw new MissingDataException("movie name is required");
+		}	
+		
+		if (aMovie.getMovieName().length() > MAX_MOVIE_NAME_LENGTH) {
+			throw new InvalidFieldException("movie name length exceeded than 45 characters");
+		}
+		
 		long movieId =  movieRepository.addMovie(aMovie);
 		return getMovieById(movieId);
 	}
@@ -58,8 +71,8 @@ public class MovieBrowsingServiceImpl implements MovieBrowsingService {
 	 * {@inheritDoc}
 	 */
 	@Override
+	@Transactional
 	public List<Movie> getMovies() {
-		//TODO load movies from the database
 		return movieRepository.getMovies();
 	}
 
@@ -76,20 +89,19 @@ public class MovieBrowsingServiceImpl implements MovieBrowsingService {
 	 * {@inheritDoc}
 	 */
 	@Override
+	@Transactional
 	public List<Movie> sortMoviesByReleaseDate() {
-		//TODO load movies from the database sorted by release date
-		return null;
+		return movieRepository.sortMoviesByReleaseDate();
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
+	@Transactional
 	public List<Movie> sortMoviesByRanking() {
-		//TODO load movies from the database sorted by ranking
-		return null;
+		return movieRepository.sortMoviesByRanking();
 	}
-
 
 
 }

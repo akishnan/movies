@@ -40,4 +40,9 @@ public interface ShowTimeRepository {
 	 * @return list of showtimes
 	 */
 	List<ShowTime> getMoviesPlayingInTheater(long theaterId);
+	
+	/**
+	 * @return list of all showtimes
+	 */
+	List<ShowTime> getAllShowTimes();
 }

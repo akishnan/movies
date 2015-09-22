@@ -8,13 +8,18 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import com.cinemas.movies.entity.Theater;
 import com.cinemas.movies.repository.TheaterRepository;
 import com.cinemas.movies.service.TheaterListingService;
+import com.cinemas.movies.service.exception.InvalidFieldException;
+import com.cinemas.movies.service.exception.MissingDataException;
 
 @Service
 public class TheaterListingServiceImpl implements TheaterListingService {
+	
+	private static final int MAX_THEATER_NAME_LENGTH = 45;
 	
 	private Logger logger = LoggerFactory.getLogger(getClass());
 	
@@ -24,6 +29,14 @@ public class TheaterListingServiceImpl implements TheaterListingService {
 	@Override
 	@Transactional
 	public Theater addTheater(Theater aTheater) {
+		if(StringUtils.isEmpty(aTheater.getTheaterName())){			
+			throw new MissingDataException("theater name is required");
+		}	
+		
+		if (aTheater.getTheaterName().length() > MAX_THEATER_NAME_LENGTH) {
+			throw new InvalidFieldException("theater name length exceeded than 45 characters");
+		}
+		
 		long theaterId =  theaterRepository.addTheater(aTheater);
 		return getTheaterId(theaterId);
 	}
@@ -56,6 +69,7 @@ public class TheaterListingServiceImpl implements TheaterListingService {
 	 * {@inheritDoc}
 	 */
 	@Override
+	@Transactional
 	public List<Theater> getAllTheaters() {
 		//TODO load theaters from database
 		return theaterRepository.getTheaters();

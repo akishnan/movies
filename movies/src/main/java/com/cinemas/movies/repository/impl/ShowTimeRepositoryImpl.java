@@ -58,4 +58,10 @@ public class ShowTimeRepositoryImpl implements ShowTimeRepository {
 		return null;
 	}
 
+	@Override
+	public List<ShowTime> getAllShowTimes() {
+		Criteria crit = this.sessionFactory.getCurrentSession().createCriteria(ShowTimeImpl.class);
+		List<ShowTime> showTimes = crit.list();
+		return showTimes;	
+	}
 }
